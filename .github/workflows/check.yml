@@ -1,4 +1,3 @@
-
 name: Daily Application Checker
 
 on:
@@ -10,6 +9,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -27,16 +28,22 @@ jobs:
           playwright install-deps chromium
 
       - name: Run checker
-        env:
-          EMAIL_TO: wdabrowning@gmail.com
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python checker.py
 
-      - name: Upload results
+      - name: Commit results back to repo
+        run: |
+          git config user.name "Application Checker Bot"
+          git config user.email "checker@github-actions"
+          git add results.json email_preview.html || true
+          git diff --staged --quiet || git commit -m "Daily check results $(date '+%Y-%m-%d %H:%M')"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload results artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: results-${{ github.run_id }}
           path: results.json
           retention-days: 30
-          
