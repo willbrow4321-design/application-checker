@@ -1,406 +1,510 @@
 {
-  "checked_at": "2026-06-04T10:11:38.674469",
+  "checked_at": "2026-06-04T10:44:39.468535",
   "summary": {
     "likely_open": [
-      "Schroders",
-      "BlackRock",
-      "Schroders Off-Cycle",
-      "BlackRock Off-Cycle"
+      "Investec Wealth"
     ],
-    "possibly_open": []
+    "page_changed": [],
+    "total_checked": 38
   },
   "results": [
     {
-      "status": "LIKELY OPEN",
-      "hits": [
-        "apply now"
-      ],
-      "neg_hits": [],
       "firm": "Schroders",
       "role": "Graduate Investment Analyst",
       "prob": "High",
-      "url": "https://www.schroders.com/en-gb/uk/individual/careers/",
-      "checked_at": "2026-06-04T10:05:57.606410"
+      "url": "https://www.schroders.com/en-gb/uk/individual/careers/early-careers/",
+      "checked_at": "2026-06-04T10:38:38.456792",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Rathbones",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.rathbones.com/careers",
-      "checked_at": "2026-06-04T10:06:06.999018"
+      "checked_at": "2026-06-04T10:38:48.221299",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Brooks Macdonald",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.brooksmacdonald.com/careers",
-      "checked_at": "2026-06-04T10:06:14.274724"
+      "checked_at": "2026-06-04T10:38:55.407517",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Canaccord Genuity Wealth",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.canaccordgenuitywealth.com/careers",
-      "checked_at": "2026-06-04T10:06:21.097202"
+      "checked_at": "2026-06-04T10:39:02.189262",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Quilter Cheviot",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.quiltercheviot.com/about-us/careers/",
-      "checked_at": "2026-06-04T10:06:27.705942"
+      "checked_at": "2026-06-04T10:39:08.961608",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Investec Wealth",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.investec.com/en_gb/welcome-to-investec/careers.html",
-      "checked_at": "2026-06-04T10:06:35.646106"
+      "checked_at": "2026-06-04T10:39:16.596130",
+      "status": "LIKELY OPEN",
+      "keyword_status": "CONFIRMED OPEN",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [
+        "applications are now open"
+      ],
+      "closed_keywords": []
     },
     {
-      "status": "ERROR",
-      "reason": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://www.mandg.com/careers\", waiting until \"networkidle\"\n",
-      "hits": [],
       "firm": "M&G Investments",
       "role": "Graduate Programme",
       "prob": "High",
-      "url": "https://www.mandg.com/careers",
-      "checked_at": "2026-06-04T10:06:57.648288"
+      "url": "https://www.mandg.com/careers/early-careers",
+      "status": "ERROR",
+      "keyword_status": "ERROR",
+      "change_status": "ERROR",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": [],
+      "checked_at": "2026-06-04T10:39:43.599122"
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Legal & General IM",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.lgim.com/uk/en/capabilities/careers/",
-      "checked_at": "2026-06-04T10:07:06.158809"
+      "checked_at": "2026-06-04T10:39:51.197386",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Rothschild Wealth",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.rothschildandco.com/en/careers/",
-      "checked_at": "2026-06-04T10:07:13.284195"
+      "checked_at": "2026-06-04T10:39:58.880308",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "ERROR",
-      "reason": "Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.charles-stanley.co.uk/careers\nCall log:\n  - navigating to \"https://www.charles-stanley.co.uk/careers\", waiting until \"networkidle\"\n",
-      "hits": [],
       "firm": "Charles Stanley",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.charles-stanley.co.uk/careers",
-      "checked_at": "2026-06-04T10:07:15.447804"
+      "status": "ERROR",
+      "keyword_status": "ERROR",
+      "change_status": "ERROR",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": [],
+      "checked_at": "2026-06-04T10:40:01.159048"
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Smith & Williamson",
       "role": "Graduate Programme",
       "prob": "High",
       "url": "https://www.smithandwilliamson.com/careers",
-      "checked_at": "2026-06-04T10:07:21.411642"
+      "checked_at": "2026-06-04T10:40:07.150342",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Waverton Investment Management",
       "role": "Graduate / Analyst",
       "prob": "High",
       "url": "https://www.waverton.co.uk/about/careers",
-      "checked_at": "2026-06-04T10:07:30.641586"
+      "checked_at": "2026-06-04T10:40:15.898808",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Fidelity International",
       "role": "Graduate Programme",
       "prob": "Good",
-      "url": "https://careers.fidelityinternational.com/",
-      "checked_at": "2026-06-04T10:07:38.372289"
+      "url": "https://careers.fidelityinternational.com/early-careers/",
+      "checked_at": "2026-06-04T10:40:23.430421",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Baillie Gifford",
       "role": "Graduate Programme",
       "prob": "Good",
-      "url": "https://www.bailliegifford.com/en/uk/about-us/careers/",
-      "checked_at": "2026-06-04T10:07:47.434555"
+      "url": "https://www.bailliegifford.com/en/uk/about-us/careers/vacancies/",
+      "checked_at": "2026-06-04T10:40:32.444230",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "LIKELY OPEN",
-      "hits": [
-        "rotational"
-      ],
-      "neg_hits": [],
       "firm": "BlackRock",
       "role": "Client & Product Graduate Rotational",
       "prob": "Good",
       "url": "https://careers.blackrock.com/students-and-graduates-emea",
-      "checked_at": "2026-06-04T10:07:53.801395"
+      "checked_at": "2026-06-04T10:40:38.770211",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "ERROR",
-      "reason": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://www.capitalgroup.com/us/en/careers.html\", waiting until \"networkidle\"\n",
-      "hits": [],
       "firm": "Capital Group",
       "role": "Graduate Analyst",
       "prob": "Good",
-      "url": "https://www.capitalgroup.com/us/en/careers.html",
-      "checked_at": "2026-06-04T10:08:15.805127"
+      "url": "https://www.capitalgroup.com/us/en/careers/students.html",
+      "status": "ERROR",
+      "keyword_status": "ERROR",
+      "change_status": "ERROR",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": [],
+      "checked_at": "2026-06-04T10:41:05.772195"
     },
     {
-      "status": "LIKELY CLOSED",
-      "hits": [],
-      "neg_hits": [
-        "check back later"
-      ],
       "firm": "Invesco",
       "role": "Graduate Programme",
       "prob": "Good",
-      "url": "https://careers.invesco.com/",
-      "checked_at": "2026-06-04T10:08:22.972501"
+      "url": "https://careers.invesco.com/early-careers",
+      "checked_at": "2026-06-04T10:41:15.346114",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Columbia Threadneedle",
       "role": "Graduate Programme",
       "prob": "Good",
       "url": "https://www.columbiathreadneedle.co.uk/careers/",
-      "checked_at": "2026-06-04T10:08:30.659217"
+      "checked_at": "2026-06-04T10:41:22.472542",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "UBS Wealth Management",
       "role": "Graduate Programme",
       "prob": "Good",
-      "url": "https://www.ubs.com/global/en/careers.html",
-      "checked_at": "2026-06-04T10:08:38.219533"
+      "url": "https://www.ubs.com/global/en/careers/graduates.html",
+      "checked_at": "2026-06-04T10:41:29.362029",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "ERROR",
-      "reason": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://ninetyone.com/en/united-kingdom/careers\", waiting until \"networkidle\"\n",
-      "hits": [],
       "firm": "Ninety One",
       "role": "Graduate Programme",
       "prob": "Good",
       "url": "https://ninetyone.com/en/united-kingdom/careers",
-      "checked_at": "2026-06-04T10:09:00.226176"
+      "status": "ERROR",
+      "keyword_status": "ERROR",
+      "change_status": "ERROR",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": [],
+      "checked_at": "2026-06-04T10:41:56.365075"
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Hargreaves Lansdown",
       "role": "Graduate Programme",
       "prob": "Good",
-      "url": "https://careers.hl.co.uk/",
-      "checked_at": "2026-06-04T10:09:07.077951"
+      "url": "https://careers.hl.co.uk/early-careers",
+      "checked_at": "2026-06-04T10:42:04.106473",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Newton Investment Management",
       "role": "Graduate / Analyst",
       "prob": "Good",
       "url": "https://www.newtonim.com/en-gb/about/careers/",
-      "checked_at": "2026-06-04T10:09:17.177281"
+      "checked_at": "2026-06-04T10:42:13.202691",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Cazenove Capital",
       "role": "Graduate Programme",
       "prob": "Good",
       "url": "https://www.cazenovecapital.com/en-gb/careers/",
-      "checked_at": "2026-06-04T10:09:25.395939"
+      "checked_at": "2026-06-04T10:42:21.277431",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Janus Henderson",
       "role": "Graduate Programme",
       "prob": "Moderate",
-      "url": "https://www.janushenderson.com/en-gb/careers/",
-      "checked_at": "2026-06-04T10:09:34.410304"
+      "url": "https://www.janushenderson.com/en-gb/careers/early-careers/",
+      "checked_at": "2026-06-04T10:42:30.483377",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "abrdn",
       "role": "Graduate Programme",
       "prob": "Moderate",
-      "url": "https://www.abrdn.com/careers",
-      "checked_at": "2026-06-04T10:09:43.124980"
+      "url": "https://www.abrdn.com/careers/early-careers",
+      "checked_at": "2026-06-04T10:42:38.955602",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Man Group",
       "role": "Graduate Programme",
       "prob": "Moderate",
-      "url": "https://www.man.com/careers",
-      "checked_at": "2026-06-04T10:09:50.975886"
+      "url": "https://www.man.com/careers/graduates",
+      "checked_at": "2026-06-04T10:42:46.893666",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Jupiter Asset Management",
       "role": "Graduate Programme",
       "prob": "Moderate",
       "url": "https://www.jupiteram.com/uk/en/about-us/careers/",
-      "checked_at": "2026-06-04T10:09:57.544251"
+      "checked_at": "2026-06-04T10:42:53.835534",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Artemis",
       "role": "Graduate / Analyst",
       "prob": "Moderate",
       "url": "https://www.artemisfunds.com/en/gbr/individual/about/careers",
-      "checked_at": "2026-06-04T10:10:07.945721"
+      "checked_at": "2026-06-04T10:43:04.199979",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Polar Capital",
       "role": "Analyst / Graduate",
       "prob": "Moderate",
       "url": "https://www.polarcapital.co.uk/about/careers",
-      "checked_at": "2026-06-04T10:10:17.759086"
+      "checked_at": "2026-06-04T10:43:14.605523",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Liontrust",
       "role": "Graduate / Analyst",
       "prob": "Moderate",
       "url": "https://www.liontrust.co.uk/about-us/careers",
-      "checked_at": "2026-06-04T10:10:25.739245"
+      "checked_at": "2026-06-04T10:43:22.381456",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Lazard Asset Management",
       "role": "Graduate Programme",
       "prob": "Moderate",
       "url": "https://www.lazardassetmanagement.com/uk/en_gb/about/careers",
-      "checked_at": "2026-06-04T10:10:32.614445"
+      "checked_at": "2026-06-04T10:43:28.597868",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "LIKELY CLOSED",
-      "hits": [],
-      "neg_hits": [
-        "check back later"
-      ],
       "firm": "Federated Hermes",
       "role": "Graduate / Analyst",
       "prob": "Moderate",
       "url": "https://www.federatedhermes.com/us/about/careers.do",
-      "checked_at": "2026-06-04T10:10:39.958033"
+      "checked_at": "2026-06-04T10:43:36.462414",
+      "status": "LIKELY CLOSED",
+      "keyword_status": "CONFIRMED CLOSED",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": [
+        "check back"
+      ]
     },
     {
-      "status": "ERROR",
-      "reason": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://www.group.pictet/careers\", waiting until \"networkidle\"\n",
-      "hits": [],
       "firm": "Pictet Asset Management",
       "role": "Graduate / Analyst",
       "prob": "Moderate",
       "url": "https://www.group.pictet/careers",
-      "checked_at": "2026-06-04T10:11:01.965072"
+      "status": "ERROR",
+      "keyword_status": "ERROR",
+      "change_status": "ERROR",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": [],
+      "checked_at": "2026-06-04T10:44:03.471607"
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Brevan Howard",
       "role": "Analyst Programme",
       "prob": "Stretch",
       "url": "https://www.brevanhoward.com/careers",
-      "checked_at": "2026-06-04T10:11:08.986643"
+      "checked_at": "2026-06-04T10:44:10.384587",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "TT International",
       "role": "Analyst / Graduate",
       "prob": "Stretch",
       "url": "https://www.ttim.com/careers",
-      "checked_at": "2026-06-04T10:11:14.619483"
+      "checked_at": "2026-06-04T10:44:16.002587",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "UNCLEAR",
-      "hits": [],
-      "neg_hits": [],
       "firm": "Rothschild & Co Advisory",
       "role": "Graduate Analyst",
       "prob": "Stretch",
       "url": "https://www.rothschildandco.com/en/careers/",
-      "checked_at": "2026-06-04T10:11:21.619146"
+      "checked_at": "2026-06-04T10:44:22.880612",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "LIKELY OPEN",
-      "hits": [
-        "apply now"
-      ],
-      "neg_hits": [],
       "firm": "Schroders Off-Cycle",
       "role": "Off-Cycle Internship",
       "prob": "Good",
-      "url": "https://www.schroders.com/en-gb/uk/individual/careers/",
-      "checked_at": "2026-06-04T10:11:30.314609"
+      "url": "https://www.schroders.com/en-gb/uk/individual/careers/early-careers/",
+      "checked_at": "2026-06-04T10:44:31.107508",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     },
     {
-      "status": "LIKELY OPEN",
-      "hits": [
-        "off-cycle"
-      ],
-      "neg_hits": [],
       "firm": "BlackRock Off-Cycle",
       "role": "Client & Product Off-Cycle",
       "prob": "Good",
       "url": "https://careers.blackrock.com/students-and-graduates-emea",
-      "checked_at": "2026-06-04T10:11:36.580317"
+      "checked_at": "2026-06-04T10:44:37.371885",
+      "status": "NO CHANGE",
+      "keyword_status": "NO KEYWORDS",
+      "change_status": "FIRST RUN",
+      "change_pct": 0,
+      "open_keywords": [],
+      "closed_keywords": []
     }
   ]
 }
