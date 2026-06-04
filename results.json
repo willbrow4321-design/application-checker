@@ -1,0 +1,406 @@
+{
+  "checked_at": "2026-06-04T10:11:38.674469",
+  "summary": {
+    "likely_open": [
+      "Schroders",
+      "BlackRock",
+      "Schroders Off-Cycle",
+      "BlackRock Off-Cycle"
+    ],
+    "possibly_open": []
+  },
+  "results": [
+    {
+      "status": "LIKELY OPEN",
+      "hits": [
+        "apply now"
+      ],
+      "neg_hits": [],
+      "firm": "Schroders",
+      "role": "Graduate Investment Analyst",
+      "prob": "High",
+      "url": "https://www.schroders.com/en-gb/uk/individual/careers/",
+      "checked_at": "2026-06-04T10:05:57.606410"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Rathbones",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.rathbones.com/careers",
+      "checked_at": "2026-06-04T10:06:06.999018"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Brooks Macdonald",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.brooksmacdonald.com/careers",
+      "checked_at": "2026-06-04T10:06:14.274724"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Canaccord Genuity Wealth",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.canaccordgenuitywealth.com/careers",
+      "checked_at": "2026-06-04T10:06:21.097202"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Quilter Cheviot",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.quiltercheviot.com/about-us/careers/",
+      "checked_at": "2026-06-04T10:06:27.705942"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Investec Wealth",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.investec.com/en_gb/welcome-to-investec/careers.html",
+      "checked_at": "2026-06-04T10:06:35.646106"
+    },
+    {
+      "status": "ERROR",
+      "reason": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://www.mandg.com/careers\", waiting until \"networkidle\"\n",
+      "hits": [],
+      "firm": "M&G Investments",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.mandg.com/careers",
+      "checked_at": "2026-06-04T10:06:57.648288"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Legal & General IM",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.lgim.com/uk/en/capabilities/careers/",
+      "checked_at": "2026-06-04T10:07:06.158809"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Rothschild Wealth",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.rothschildandco.com/en/careers/",
+      "checked_at": "2026-06-04T10:07:13.284195"
+    },
+    {
+      "status": "ERROR",
+      "reason": "Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.charles-stanley.co.uk/careers\nCall log:\n  - navigating to \"https://www.charles-stanley.co.uk/careers\", waiting until \"networkidle\"\n",
+      "hits": [],
+      "firm": "Charles Stanley",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.charles-stanley.co.uk/careers",
+      "checked_at": "2026-06-04T10:07:15.447804"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Smith & Williamson",
+      "role": "Graduate Programme",
+      "prob": "High",
+      "url": "https://www.smithandwilliamson.com/careers",
+      "checked_at": "2026-06-04T10:07:21.411642"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Waverton Investment Management",
+      "role": "Graduate / Analyst",
+      "prob": "High",
+      "url": "https://www.waverton.co.uk/about/careers",
+      "checked_at": "2026-06-04T10:07:30.641586"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Fidelity International",
+      "role": "Graduate Programme",
+      "prob": "Good",
+      "url": "https://careers.fidelityinternational.com/",
+      "checked_at": "2026-06-04T10:07:38.372289"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Baillie Gifford",
+      "role": "Graduate Programme",
+      "prob": "Good",
+      "url": "https://www.bailliegifford.com/en/uk/about-us/careers/",
+      "checked_at": "2026-06-04T10:07:47.434555"
+    },
+    {
+      "status": "LIKELY OPEN",
+      "hits": [
+        "rotational"
+      ],
+      "neg_hits": [],
+      "firm": "BlackRock",
+      "role": "Client & Product Graduate Rotational",
+      "prob": "Good",
+      "url": "https://careers.blackrock.com/students-and-graduates-emea",
+      "checked_at": "2026-06-04T10:07:53.801395"
+    },
+    {
+      "status": "ERROR",
+      "reason": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://www.capitalgroup.com/us/en/careers.html\", waiting until \"networkidle\"\n",
+      "hits": [],
+      "firm": "Capital Group",
+      "role": "Graduate Analyst",
+      "prob": "Good",
+      "url": "https://www.capitalgroup.com/us/en/careers.html",
+      "checked_at": "2026-06-04T10:08:15.805127"
+    },
+    {
+      "status": "LIKELY CLOSED",
+      "hits": [],
+      "neg_hits": [
+        "check back later"
+      ],
+      "firm": "Invesco",
+      "role": "Graduate Programme",
+      "prob": "Good",
+      "url": "https://careers.invesco.com/",
+      "checked_at": "2026-06-04T10:08:22.972501"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Columbia Threadneedle",
+      "role": "Graduate Programme",
+      "prob": "Good",
+      "url": "https://www.columbiathreadneedle.co.uk/careers/",
+      "checked_at": "2026-06-04T10:08:30.659217"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "UBS Wealth Management",
+      "role": "Graduate Programme",
+      "prob": "Good",
+      "url": "https://www.ubs.com/global/en/careers.html",
+      "checked_at": "2026-06-04T10:08:38.219533"
+    },
+    {
+      "status": "ERROR",
+      "reason": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://ninetyone.com/en/united-kingdom/careers\", waiting until \"networkidle\"\n",
+      "hits": [],
+      "firm": "Ninety One",
+      "role": "Graduate Programme",
+      "prob": "Good",
+      "url": "https://ninetyone.com/en/united-kingdom/careers",
+      "checked_at": "2026-06-04T10:09:00.226176"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Hargreaves Lansdown",
+      "role": "Graduate Programme",
+      "prob": "Good",
+      "url": "https://careers.hl.co.uk/",
+      "checked_at": "2026-06-04T10:09:07.077951"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Newton Investment Management",
+      "role": "Graduate / Analyst",
+      "prob": "Good",
+      "url": "https://www.newtonim.com/en-gb/about/careers/",
+      "checked_at": "2026-06-04T10:09:17.177281"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Cazenove Capital",
+      "role": "Graduate Programme",
+      "prob": "Good",
+      "url": "https://www.cazenovecapital.com/en-gb/careers/",
+      "checked_at": "2026-06-04T10:09:25.395939"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Janus Henderson",
+      "role": "Graduate Programme",
+      "prob": "Moderate",
+      "url": "https://www.janushenderson.com/en-gb/careers/",
+      "checked_at": "2026-06-04T10:09:34.410304"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "abrdn",
+      "role": "Graduate Programme",
+      "prob": "Moderate",
+      "url": "https://www.abrdn.com/careers",
+      "checked_at": "2026-06-04T10:09:43.124980"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Man Group",
+      "role": "Graduate Programme",
+      "prob": "Moderate",
+      "url": "https://www.man.com/careers",
+      "checked_at": "2026-06-04T10:09:50.975886"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Jupiter Asset Management",
+      "role": "Graduate Programme",
+      "prob": "Moderate",
+      "url": "https://www.jupiteram.com/uk/en/about-us/careers/",
+      "checked_at": "2026-06-04T10:09:57.544251"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Artemis",
+      "role": "Graduate / Analyst",
+      "prob": "Moderate",
+      "url": "https://www.artemisfunds.com/en/gbr/individual/about/careers",
+      "checked_at": "2026-06-04T10:10:07.945721"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Polar Capital",
+      "role": "Analyst / Graduate",
+      "prob": "Moderate",
+      "url": "https://www.polarcapital.co.uk/about/careers",
+      "checked_at": "2026-06-04T10:10:17.759086"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Liontrust",
+      "role": "Graduate / Analyst",
+      "prob": "Moderate",
+      "url": "https://www.liontrust.co.uk/about-us/careers",
+      "checked_at": "2026-06-04T10:10:25.739245"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Lazard Asset Management",
+      "role": "Graduate Programme",
+      "prob": "Moderate",
+      "url": "https://www.lazardassetmanagement.com/uk/en_gb/about/careers",
+      "checked_at": "2026-06-04T10:10:32.614445"
+    },
+    {
+      "status": "LIKELY CLOSED",
+      "hits": [],
+      "neg_hits": [
+        "check back later"
+      ],
+      "firm": "Federated Hermes",
+      "role": "Graduate / Analyst",
+      "prob": "Moderate",
+      "url": "https://www.federatedhermes.com/us/about/careers.do",
+      "checked_at": "2026-06-04T10:10:39.958033"
+    },
+    {
+      "status": "ERROR",
+      "reason": "Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://www.group.pictet/careers\", waiting until \"networkidle\"\n",
+      "hits": [],
+      "firm": "Pictet Asset Management",
+      "role": "Graduate / Analyst",
+      "prob": "Moderate",
+      "url": "https://www.group.pictet/careers",
+      "checked_at": "2026-06-04T10:11:01.965072"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Brevan Howard",
+      "role": "Analyst Programme",
+      "prob": "Stretch",
+      "url": "https://www.brevanhoward.com/careers",
+      "checked_at": "2026-06-04T10:11:08.986643"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "TT International",
+      "role": "Analyst / Graduate",
+      "prob": "Stretch",
+      "url": "https://www.ttim.com/careers",
+      "checked_at": "2026-06-04T10:11:14.619483"
+    },
+    {
+      "status": "UNCLEAR",
+      "hits": [],
+      "neg_hits": [],
+      "firm": "Rothschild & Co Advisory",
+      "role": "Graduate Analyst",
+      "prob": "Stretch",
+      "url": "https://www.rothschildandco.com/en/careers/",
+      "checked_at": "2026-06-04T10:11:21.619146"
+    },
+    {
+      "status": "LIKELY OPEN",
+      "hits": [
+        "apply now"
+      ],
+      "neg_hits": [],
+      "firm": "Schroders Off-Cycle",
+      "role": "Off-Cycle Internship",
+      "prob": "Good",
+      "url": "https://www.schroders.com/en-gb/uk/individual/careers/",
+      "checked_at": "2026-06-04T10:11:30.314609"
+    },
+    {
+      "status": "LIKELY OPEN",
+      "hits": [
+        "off-cycle"
+      ],
+      "neg_hits": [],
+      "firm": "BlackRock Off-Cycle",
+      "role": "Client & Product Off-Cycle",
+      "prob": "Good",
+      "url": "https://careers.blackrock.com/students-and-graduates-emea",
+      "checked_at": "2026-06-04T10:11:36.580317"
+    }
+  ]
+}
