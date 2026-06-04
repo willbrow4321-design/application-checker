@@ -30,11 +30,11 @@ jobs:
       - name: Run checker
         run: python checker.py
 
-      - name: Commit results back to repo
+      - name: Commit results and snapshots back to repo
         run: |
           git config user.name "Application Checker Bot"
           git config user.email "checker@github-actions"
-          git add results.json email_preview.html || true
+          git add results.json snapshots.json || true
           git diff --staged --quiet || git commit -m "Daily check results $(date '+%Y-%m-%d %H:%M')"
           git push
         env:
