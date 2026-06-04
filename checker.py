@@ -1,326 +1,335 @@
 #!/usr/bin/env python3
 """
-William Browning — Application Checker (GitHub Actions / Playwright version)
-Checks 38 firm careers pages with a real browser, emails results.
+William Browning — Application Checker v2
+Page change detection: takes snapshots of careers pages and alerts when they change significantly.
 Runs daily at 8am via GitHub Actions.
 """
 
 import json
 import os
-import smtplib
 import datetime
 import time
+import hashlib
 import re
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 try:
     from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
     PLAYWRIGHT = True
 except ImportError:
     PLAYWRIGHT = False
-    import urllib.request
 
 # ── FIRMS ─────────────────────────────────────────────────────────────────────
 
 FIRMS = [
-    # HIGH PROBABILITY
     {"name": "Schroders", "role": "Graduate Investment Analyst", "prob": "High",
-     "url": "https://www.schroders.com/en-gb/uk/individual/careers/",
-     "search": ["graduate 2027", "apply now", "applications open", "investment analyst"]},
+     "url": "https://www.schroders.com/en-gb/uk/individual/careers/early-careers/"},
     {"name": "Rathbones", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.rathbones.com/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.rathbones.com/careers"},
     {"name": "Brooks Macdonald", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.brooksmacdonald.com/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.brooksmacdonald.com/careers"},
     {"name": "Canaccord Genuity Wealth", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.canaccordgenuitywealth.com/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.canaccordgenuitywealth.com/careers"},
     {"name": "Quilter Cheviot", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.quiltercheviot.com/about-us/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.quiltercheviot.com/about-us/careers/"},
     {"name": "Investec Wealth", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.investec.com/en_gb/welcome-to-investec/careers.html",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.investec.com/en_gb/welcome-to-investec/careers.html"},
     {"name": "M&G Investments", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.mandg.com/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.mandg.com/careers/early-careers"},
     {"name": "Legal & General IM", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.lgim.com/uk/en/capabilities/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.lgim.com/uk/en/capabilities/careers/"},
     {"name": "Rothschild Wealth", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.rothschildandco.com/en/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.rothschildandco.com/en/careers/"},
     {"name": "Charles Stanley", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.charles-stanley.co.uk/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.charles-stanley.co.uk/careers"},
     {"name": "Smith & Williamson", "role": "Graduate Programme", "prob": "High",
-     "url": "https://www.smithandwilliamson.com/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.smithandwilliamson.com/careers"},
     {"name": "Waverton Investment Management", "role": "Graduate / Analyst", "prob": "High",
-     "url": "https://www.waverton.co.uk/about/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
-    # GOOD
+     "url": "https://www.waverton.co.uk/about/careers"},
     {"name": "Fidelity International", "role": "Graduate Programme", "prob": "Good",
-     "url": "https://careers.fidelityinternational.com/",
-     "search": ["graduate 2027", "apply now", "applications open", "summer 2027"]},
+     "url": "https://careers.fidelityinternational.com/early-careers/"},
     {"name": "Baillie Gifford", "role": "Graduate Programme", "prob": "Good",
-     "url": "https://www.bailliegifford.com/en/uk/about-us/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.bailliegifford.com/en/uk/about-us/careers/vacancies/"},
     {"name": "BlackRock", "role": "Client & Product Graduate Rotational", "prob": "Good",
-     "url": "https://careers.blackrock.com/students-and-graduates-emea",
-     "search": ["graduate 2027", "apply now", "applications open", "rotational"]},
+     "url": "https://careers.blackrock.com/students-and-graduates-emea"},
     {"name": "Capital Group", "role": "Graduate Analyst", "prob": "Good",
-     "url": "https://www.capitalgroup.com/us/en/careers.html",
-     "search": ["graduate 2027", "apply now", "analyst program"]},
+     "url": "https://www.capitalgroup.com/us/en/careers/students.html"},
     {"name": "Invesco", "role": "Graduate Programme", "prob": "Good",
-     "url": "https://careers.invesco.com/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://careers.invesco.com/early-careers"},
     {"name": "Columbia Threadneedle", "role": "Graduate Programme", "prob": "Good",
-     "url": "https://www.columbiathreadneedle.co.uk/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.columbiathreadneedle.co.uk/careers/"},
     {"name": "UBS Wealth Management", "role": "Graduate Programme", "prob": "Good",
-     "url": "https://www.ubs.com/global/en/careers.html",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.ubs.com/global/en/careers/graduates.html"},
     {"name": "Ninety One", "role": "Graduate Programme", "prob": "Good",
-     "url": "https://ninetyone.com/en/united-kingdom/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://ninetyone.com/en/united-kingdom/careers"},
     {"name": "Hargreaves Lansdown", "role": "Graduate Programme", "prob": "Good",
-     "url": "https://careers.hl.co.uk/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://careers.hl.co.uk/early-careers"},
     {"name": "Newton Investment Management", "role": "Graduate / Analyst", "prob": "Good",
-     "url": "https://www.newtonim.com/en-gb/about/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.newtonim.com/en-gb/about/careers/"},
     {"name": "Cazenove Capital", "role": "Graduate Programme", "prob": "Good",
-     "url": "https://www.cazenovecapital.com/en-gb/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
-    # MODERATE
+     "url": "https://www.cazenovecapital.com/en-gb/careers/"},
     {"name": "Janus Henderson", "role": "Graduate Programme", "prob": "Moderate",
-     "url": "https://www.janushenderson.com/en-gb/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.janushenderson.com/en-gb/careers/early-careers/"},
     {"name": "abrdn", "role": "Graduate Programme", "prob": "Moderate",
-     "url": "https://www.abrdn.com/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.abrdn.com/careers/early-careers"},
     {"name": "Man Group", "role": "Graduate Programme", "prob": "Moderate",
-     "url": "https://www.man.com/careers",
-     "search": ["graduate 2027", "apply now", "analyst program"]},
+     "url": "https://www.man.com/careers/graduates"},
     {"name": "Jupiter Asset Management", "role": "Graduate Programme", "prob": "Moderate",
-     "url": "https://www.jupiteram.com/uk/en/about-us/careers/",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.jupiteram.com/uk/en/about-us/careers/"},
     {"name": "Artemis", "role": "Graduate / Analyst", "prob": "Moderate",
-     "url": "https://www.artemisfunds.com/en/gbr/individual/about/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.artemisfunds.com/en/gbr/individual/about/careers"},
     {"name": "Polar Capital", "role": "Analyst / Graduate", "prob": "Moderate",
-     "url": "https://www.polarcapital.co.uk/about/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.polarcapital.co.uk/about/careers"},
     {"name": "Liontrust", "role": "Graduate / Analyst", "prob": "Moderate",
-     "url": "https://www.liontrust.co.uk/about-us/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.liontrust.co.uk/about-us/careers"},
     {"name": "Lazard Asset Management", "role": "Graduate Programme", "prob": "Moderate",
-     "url": "https://www.lazardassetmanagement.com/uk/en_gb/about/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.lazardassetmanagement.com/uk/en_gb/about/careers"},
     {"name": "Federated Hermes", "role": "Graduate / Analyst", "prob": "Moderate",
-     "url": "https://www.federatedhermes.com/us/about/careers.do",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.federatedhermes.com/us/about/careers.do"},
     {"name": "Pictet Asset Management", "role": "Graduate / Analyst", "prob": "Moderate",
-     "url": "https://www.group.pictet/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
-    # STRETCH
+     "url": "https://www.group.pictet/careers"},
     {"name": "Brevan Howard", "role": "Analyst Programme", "prob": "Stretch",
-     "url": "https://www.brevanhoward.com/careers",
-     "search": ["graduate 2027", "apply now", "analyst program"]},
+     "url": "https://www.brevanhoward.com/careers"},
     {"name": "TT International", "role": "Analyst / Graduate", "prob": "Stretch",
-     "url": "https://www.ttim.com/careers",
-     "search": ["graduate 2027", "apply now", "applications open"]},
+     "url": "https://www.ttim.com/careers"},
     {"name": "Rothschild & Co Advisory", "role": "Graduate Analyst", "prob": "Stretch",
-     "url": "https://www.rothschildandco.com/en/careers/",
-     "search": ["graduate 2027", "apply now", "analyst"]},
+     "url": "https://www.rothschildandco.com/en/careers/"},
     {"name": "Schroders Off-Cycle", "role": "Off-Cycle Internship", "prob": "Good",
-     "url": "https://www.schroders.com/en-gb/uk/individual/careers/",
-     "search": ["off-cycle", "internship 2027", "apply now"]},
+     "url": "https://www.schroders.com/en-gb/uk/individual/careers/early-careers/"},
     {"name": "BlackRock Off-Cycle", "role": "Client & Product Off-Cycle", "prob": "Good",
-     "url": "https://careers.blackrock.com/students-and-graduates-emea",
-     "search": ["off-cycle", "internship 2027", "apply now"]},
+     "url": "https://careers.blackrock.com/students-and-graduates-emea"},
 ]
 
-NEGATIVE = ["applications closed", "currently closed", "not yet open",
-            "check back later", "coming soon", "no current vacancies",
-            "no open positions", "applications will open"]
+# ── CONFIRMED OPEN KEYWORDS (very specific — only appear on live application pages) ──
 
-# ── PAGE CHECK ────────────────────────────────────────────────────────────────
+CONFIRMED_OPEN = [
+    "apply for 2027",
+    "applications open for 2027",
+    "graduate programme 2027",
+    "summer analyst 2027",
+    "summer internship 2027",
+    "off-cycle 2027",
+    "closing date",
+    "application deadline",
+    "apply by",
+    "applications close",
+    "now accepting applications",
+    "applications are now open",
+    "apply now for",
+    "start date: september 2027",
+    "start date: august 2027",
+    "intake 2027",
+    "cohort 2027",
+]
 
-def check_firm_playwright(page, firm):
+CONFIRMED_CLOSED = [
+    "applications are now closed",
+    "applications closed",
+    "this programme is now closed",
+    "recruitment closed",
+    "no current openings",
+    "no current vacancies",
+    "check back",
+    "register your interest for 2027",
+    "register interest",
+    "be notified when",
+    "join our talent community to be notified",
+]
+
+SNAPSHOTS_FILE = "snapshots.json"
+RESULTS_FILE = "results.json"
+CHANGES_THRESHOLD = 0.15  # 15% change in content = significant
+
+# ── HELPERS ───────────────────────────────────────────────────────────────────
+
+def load_snapshots():
+    if os.path.exists(SNAPSHOTS_FILE):
+        try:
+            with open(SNAPSHOTS_FILE) as f:
+                return json.load(f)
+        except:
+            pass
+    return {}
+
+def save_snapshots(snaps):
+    with open(SNAPSHOTS_FILE, "w") as f:
+        json.dump(snaps, f, indent=2)
+
+def clean_text(text):
+    """Remove dynamic elements like dates, prices, numbers that change daily."""
+    text = re.sub(r'\d{1,2}[/-]\d{1,2}[/-]\d{2,4}', '', text)
+    text = re.sub(r'\d{4}-\d{2}-\d{2}', '', text)
+    text = re.sub(r'\b\d+\b', '', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text.lower()
+
+def content_hash(text):
+    return hashlib.md5(clean_text(text).encode()).hexdigest()
+
+def similarity(old_text, new_text):
+    """Returns 0-1 where 1 = identical, 0 = completely different."""
+    old = set(clean_text(old_text).split())
+    new = set(clean_text(new_text).split())
+    if not old and not new:
+        return 1.0
+    if not old or not new:
+        return 0.0
+    intersection = old & new
+    union = old | new
+    return len(intersection) / len(union)
+
+def check_keywords(text):
+    """Check for confirmed open/closed keywords."""
+    t = text.lower()
+    open_hits = [kw for kw in CONFIRMED_OPEN if kw in t]
+    closed_hits = [kw for kw in CONFIRMED_CLOSED if kw in t]
+    return open_hits, closed_hits
+
+# ── PAGE FETCH ────────────────────────────────────────────────────────────────
+
+def fetch_page(page, url):
     try:
-        page.goto(firm["url"], timeout=20000, wait_until="networkidle")
-        page.wait_for_timeout(3000)  # let JS settle
-        content = page.content().lower()
-        text = page.inner_text("body").lower()
-        combined = content + " " + text
+        page.goto(url, timeout=25000, wait_until="networkidle")
+        page.wait_for_timeout(3000)
+        text = page.inner_text("body")
+        return text, None
     except Exception as e:
-        return {"status": "ERROR", "reason": str(e), "hits": []}
+        return None, str(e)
 
-    hits = []
-    for kw in firm["search"]:
-        if kw.lower() in combined:
-            hits.append(kw)
+# ── ASSESS ────────────────────────────────────────────────────────────────────
 
-    neg_hits = [kw for kw in NEGATIVE if kw in combined]
+def assess(firm_name, new_text, snapshots):
+    open_hits, closed_hits = check_keywords(new_text)
+    old_snap = snapshots.get(firm_name)
 
-    if hits and not neg_hits:
-        status = "LIKELY OPEN"
-    elif hits and neg_hits:
-        status = "MIXED"
-    elif neg_hits:
-        status = "LIKELY CLOSED"
+    # Keyword-based assessment first
+    if open_hits and not closed_hits:
+        keyword_status = "CONFIRMED OPEN"
+    elif open_hits and closed_hits:
+        keyword_status = "MIXED"
+    elif closed_hits:
+        keyword_status = "CONFIRMED CLOSED"
     else:
-        status = "UNCLEAR"
+        keyword_status = "NO KEYWORDS"
 
-    return {"status": status, "hits": hits, "neg_hits": neg_hits}
+    # Page change detection
+    change_status = "FIRST RUN"
+    change_pct = 0
+    if old_snap:
+        sim = similarity(old_snap["text"], new_text)
+        change_pct = round((1 - sim) * 100, 1)
+        if change_pct >= 20:
+            change_status = "SIGNIFICANT CHANGE"
+        elif change_pct >= 8:
+            change_status = "MINOR CHANGE"
+        else:
+            change_status = "NO CHANGE"
 
-# ── EMAIL ─────────────────────────────────────────────────────────────────────
+    # Final decision
+    if keyword_status == "CONFIRMED OPEN":
+        final = "LIKELY OPEN"
+    elif keyword_status == "CONFIRMED CLOSED":
+        final = "LIKELY CLOSED"
+    elif change_status == "SIGNIFICANT CHANGE":
+        final = "PAGE CHANGED — CHECK NOW"
+    elif change_status == "MINOR CHANGE":
+        final = "MINOR CHANGE"
+    else:
+        final = "NO CHANGE"
 
-def send_email(results, likely_open, possibly_open):
-    """Send results via GitHub's built-in email or print summary."""
-    now = datetime.datetime.now().strftime("%d %b %Y %H:%M")
-
-    # Build HTML email
-    rows = ""
-    for r in results:
-        colour = {
-            "LIKELY OPEN": "#edf7e0",
-            "MIXED": "#fdf0d8",
-            "LIKELY CLOSED": "#f8f8f6",
-            "UNCLEAR": "#f8f8f6",
-            "ERROR": "#fdeaea",
-        }.get(r["status"], "#f8f8f6")
-
-        prob_colour = {
-            "High": "#2d6a0a",
-            "Good": "#145394",
-            "Moderate": "#7a4700",
-            "Stretch": "#9b2525",
-        }.get(r["prob"], "#555")
-
-        hits_str = ", ".join(r.get("hits", [])) or "—"
-        rows += f"""
-        <tr style="background:{colour}">
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600">{r['firm']}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;font-size:12px;color:#555">{r['role']}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;font-size:12px;color:{prob_colour};font-weight:600">{r['prob']}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;font-weight:600">{r['status']}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee;font-size:11px;color:#666">{hits_str}</td>
-          <td style="padding:8px 12px;border-bottom:1px solid #eee"><a href="{r['url']}" style="color:#1F3864;font-size:12px">Visit ↗</a></td>
-        </tr>"""
-
-    urgent = ""
-    if likely_open:
-        names = ", ".join(likely_open)
-        urgent = f"""
-        <div style="background:#edf7e0;border-left:4px solid #2d6a0a;padding:14px 18px;margin-bottom:20px;border-radius:0 8px 8px 0">
-          <strong style="color:#2d6a0a;font-size:15px">🚨 Apply now — likely open</strong><br>
-          <span style="color:#1a3d0a;font-size:14px;margin-top:6px;display:block">{names}</span>
-        </div>"""
-    elif possibly_open:
-        names = ", ".join(possibly_open)
-        urgent = f"""
-        <div style="background:#fdf0d8;border-left:4px solid #7a4700;padding:14px 18px;margin-bottom:20px;border-radius:0 8px 8px 0">
-          <strong style="color:#7a4700;font-size:15px">📋 Check these — possibly open</strong><br>
-          <span style="color:#4a2d00;font-size:14px;margin-top:6px;display:block">{names}</span>
-        </div>"""
-
-    html = f"""
-    <html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:900px;margin:0 auto;padding:20px;color:#111">
-      <div style="background:#1F3864;padding:20px 24px;border-radius:10px;margin-bottom:24px">
-        <h1 style="color:white;margin:0;font-size:20px;font-weight:700">William Browning — Application Checker</h1>
-        <p style="color:rgba(255,255,255,0.65);margin:6px 0 0;font-size:13px">Daily check · {now} · {len(results)} firms checked</p>
-      </div>
-      {urgent}
-      <table style="width:100%;border-collapse:collapse;border:1px solid #eee;border-radius:8px;overflow:hidden">
-        <thead>
-          <tr style="background:#f8f8f6">
-            <th style="padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#999">Firm</th>
-            <th style="padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#999">Role</th>
-            <th style="padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#999">Your odds</th>
-            <th style="padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#999">Status</th>
-            <th style="padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#999">Keywords found</th>
-            <th style="padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#999">Link</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-      <p style="font-size:12px;color:#999;margin-top:20px">Checked by GitHub Actions · Running daily at 8am · <a href="https://github.com/willbrow4321-design/application-checker/actions" style="color:#1F3864">View logs</a></p>
-    </body></html>"""
-
-    # Print to stdout (captured in GitHub Actions logs)
-    print("\n" + "="*60)
-    print(f"CHECK COMPLETE — {now}")
-    print(f"Likely open    : {', '.join(likely_open) if likely_open else 'none'}")
-    print(f"Possibly open  : {', '.join(possibly_open) if possibly_open else 'none'}")
-    print("="*60)
-
-    # Save HTML for GitHub Actions summary
-    with open("email_preview.html", "w") as f:
-        f.write(html)
-
-    return html
+    return {
+        "status": final,
+        "keyword_status": keyword_status,
+        "change_status": change_status,
+        "change_pct": change_pct,
+        "open_keywords": open_hits,
+        "closed_keywords": closed_hits,
+    }
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
 def main():
-    results = []
-    likely_open = []
-    possibly_open = []
+    print(f"Starting check — {datetime.datetime.now().isoformat()}")
+    print(f"Checking {len(FIRMS)} firms with page change detection...")
 
-    print(f"Starting check of {len(FIRMS)} firms...")
-    print(f"Time: {datetime.datetime.now().isoformat()}")
+    snapshots = load_snapshots()
+    results = []
+    urgent = []
+    changed = []
+    new_snapshots = dict(snapshots)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(
-            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                       "AppleWebKit/537.36 (KHTML, like Gecko) "
-                       "Chrome/120.0.0.0 Safari/537.36",
+            user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36",
             viewport={"width": 1280, "height": 800},
         )
         page = context.new_page()
 
         for i, firm in enumerate(FIRMS):
-            print(f"[{i+1}/{len(FIRMS)}] Checking {firm['name']}...")
-            result = check_firm_playwright(page, firm)
-            result.update({
-                "firm": firm["name"],
-                "role": firm["role"],
-                "prob": firm["prob"],
-                "url": firm["url"],
-                "checked_at": datetime.datetime.now().isoformat(),
-            })
+            name = firm["name"]
+            print(f"[{i+1}/{len(FIRMS)}] {name}...")
+
+            text, error = fetch_page(page, firm["url"])
+
+            if error or not text:
+                result = {
+                    "firm": name, "role": firm["role"], "prob": firm["prob"],
+                    "url": firm["url"], "status": "ERROR", "keyword_status": "ERROR",
+                    "change_status": "ERROR", "change_pct": 0,
+                    "open_keywords": [], "closed_keywords": [],
+                    "checked_at": datetime.datetime.now().isoformat(),
+                }
+                print(f"  → ERROR: {error}")
+            else:
+                assessment = assess(name, text, snapshots)
+                result = {
+                    "firm": name, "role": firm["role"], "prob": firm["prob"],
+                    "url": firm["url"],
+                    "checked_at": datetime.datetime.now().isoformat(),
+                    **assessment
+                }
+                print(f"  → {result['status']} | change: {result['change_pct']}% | keywords: {result['open_keywords'][:3]}")
+
+                # Update snapshot
+                new_snapshots[name] = {
+                    "text": text[:50000],  # store first 50k chars
+                    "hash": content_hash(text),
+                    "captured_at": datetime.datetime.now().isoformat(),
+                }
+
+                if result["status"] == "LIKELY OPEN":
+                    urgent.append(name)
+                elif result["status"] in ["PAGE CHANGED — CHECK NOW", "MINOR CHANGE"]:
+                    changed.append(name)
+
             results.append(result)
-            print(f"  → {result['status']} | hits: {result.get('hits', [])}")
-
-            if result["status"] == "LIKELY OPEN":
-                likely_open.append(firm["name"])
-            elif result["status"] == "MIXED":
-                possibly_open.append(firm["name"])
-
             time.sleep(2)
 
         browser.close()
 
+    # Save updated snapshots
+    save_snapshots(new_snapshots)
+
     # Save results
-    with open("results.json", "w") as f:
-        json.dump({
-            "checked_at": datetime.datetime.now().isoformat(),
-            "summary": {"likely_open": likely_open, "possibly_open": possibly_open},
-            "results": results,
-        }, f, indent=2)
+    output = {
+        "checked_at": datetime.datetime.now().isoformat(),
+        "summary": {
+            "likely_open": urgent,
+            "page_changed": changed,
+            "total_checked": len(results),
+        },
+        "results": results,
+    }
+    with open(RESULTS_FILE, "w") as f:
+        json.dump(output, f, indent=2)
 
-    # Generate email HTML
-    send_email(results, likely_open, possibly_open)
-
-    # Exit with error code if urgent firms found (triggers GitHub notification)
-    if likely_open:
-        print(f"\n🚨 URGENT: {len(likely_open)} firms likely open — {', '.join(likely_open)}")
+    # Summary
+    print("\n" + "="*60)
+    print("CHECK COMPLETE")
+    print(f"Likely open       : {', '.join(urgent) if urgent else 'none'}")
+    print(f"Page changed      : {', '.join(changed) if changed else 'none'}")
+    print(f"Total checked     : {len(results)}")
+    print("="*60)
 
 if __name__ == "__main__":
     main()
